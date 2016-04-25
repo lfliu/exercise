@@ -1,0 +1,29 @@
+#！ perl
+#用/g进行全局替换
+$_="home,sweet home!";
+s/home/cave/g;
+print"$_\n";
+
+$_="input data\t may have    extra whitespace.\n";
+s/\s+/ /g;
+print "$_\n";
+
+s/^\s+//;
+s/\s+$//;
+
+my $original="fred ate 1 rib.\n";
+my $copy =$original;
+$copy =~ s/\d+ ribs?/10 ribs/;
+print $copy; 
+
+$_="I saw Barney with  Fred.\n";
+s/(fred|barney)/\U$1/gi;
+print $_;
+
+$_="I saw Barney with Fred.\n";
+s/(\w+) with (\w+）/\U$2\E with $1/i;
+print $_;
+
+$_="I saw Barney with  Fred.\n";
+s/(fred|barney)/\l$1/gi;
+print $_;

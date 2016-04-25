@@ -1,0 +1,20 @@
+#! perl
+#joinº¯Êý
+my $x=join ":",2,4,6,8,10;
+print "$x.\n";
+
+#splitº¯Êý
+my @field =split /:/,"abc:def::g:h";
+print "@field\n";
+
+$_="hello there,neighbour!";
+my($first,$second,$third)=/(\S+) (\S+),(\S+)/;
+print "$second is $third\n";
+
+my $text="fred dropped a 5 ton granite block on Mr.Slate";
+my @words =($text=~/([a-z]+)/ig);
+print "Result:@words\n";
+
+my $data="barney rubble fred flintstone wilma flintstone";
+my %last_name=($data=~/(\w+)\s+(\w+)/g);
+print "resluts:%last_name.\n";

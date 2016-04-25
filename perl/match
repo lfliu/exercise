@@ -1,0 +1,72 @@
+#!perl
+$_="a real \\ backslash";
+if(/\\/){
+print "it matched!\n";}
+#两个反斜线才是一个真正的反斜线
+# .用来匹配任意一个字符 ，\n除外
+# *号用来匹配前面的条目零次或多次
+# .*匹配任意字符零次或者多次
+# + 匹配前一个条目一次以上
+#？是出现一次或者不出现
+
+#（）对字符串分组,同时也使得重新使用这些字符串成为可能 反向引用来引用括号中的模式匹配的文字。
+
+
+$_="abba";
+if(/(.)\1/){
+print "it matched same chacter next to itself!\n"}
+
+$_="yabba dabba doo";
+if(/y(....) d\1/){
+print"it matched the same after y and d!\n";}
+
+$_="yabba dabba doo";
+if(/y()()\2\1/){
+print "it matched after the y!\n";}
+
+$_="aa11bb";
+if(/(.)\g{1}11/){
+print"it matched!\n"}
+#| 表示择一匹配,[]字符集匹配，它只匹配单个字符，但可以是字符集中列出的任意一个
+#[^]会匹配指定字符以外的字符
+#\d表示一个数字的字符集的简写，\s匹配任意空白符，\S表示非空白字符。大写表示否定。
+#[^\d]相当于\D
+
+
+$_="abc slj sjl";
+if(/[^fg]/){
+print"it doesn't match  fg\n";}
+
+#模式匹配修饰符，追加在模式表达式末尾定界符后面的字母
+
+#/i进行大小写无关的匹配
+#/s修饰时，.可以代表任意字符。
+$_="I saw barney\ndown at the bowling alley\nwith fred\nlast night.\n";
+if(/barney.*fred/s){
+print"that string mentions fred after barney!\n";}
+#/x加入空白符，使其容易阅读和理解
+
+#锚位 字符串锚位\A锚位匹配字符串的绝对开头，\z匹配字符串的绝对末尾,。\Z允许后面出现换行符，在匹配时，无需chomp
+#如果要匹配多行文本。^表示字符串开头锚位，$用来表示字符串结尾锚位.加上\m修饰符,演化成行首或者行末锚位。
+#\b 表示单词边界锚位。
+
+$_=' this is a wilma line
+barney is on another line
+but this ends in fred
+but a final dino line';
+if(/fred$/m){
+print "this ends in fred.\n";}
+if(/^barney/m)
+{print "barney is in the beginning.\n";}
+
+print "do you like perl";
+my $likes_perl=(<STDIN>=~/\byes\b/i);
+if($likes_perl){
+print"you said earlier that you like perl,so...\n";}
+
+
+while(<>){
+if(/\A(@ARGV/)
+print "we saw @ARGV ginning of $_";
+}
+}
